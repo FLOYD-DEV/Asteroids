@@ -49,7 +49,7 @@ def main():
             for shot in shots:
                 if shot.collides_with(asteroid):
                     shot.kill()  # Remove the shot
-                    asteroid.kill()  # Remove the asteroid
+                    asteroid.split()  # Split the asteroid (also kills it)
                     break  # No need to check this shot against other asteroids
         
         screen.fill("black")
