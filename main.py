@@ -37,11 +37,20 @@ def main():
         
         updatable.update(dt)
         
+        # Check for collisions between player and asteroids
         for asteroid in asteroids:
             if player.collides_with(asteroid):
                 print("Game over!")
                 pygame.quit()
                 return
+        
+        # Check for collisions between shots and asteroids
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    shot.kill()  # Remove the shot
+                    asteroid.kill()  # Remove the asteroid
+                    break  # No need to check this shot against other asteroids
         
         screen.fill("black")
         for obj in drawable:
